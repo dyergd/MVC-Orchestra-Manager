@@ -1,0 +1,173 @@
+﻿@model OrchestraManagement_GD.Models.Entities.Orchestra
+
+@{
+    ViewData["Title"] = "Details";
+}
+
+<h1>Orchestra Details</h1>
+
+<div>
+    
+    <hr />
+    <dl class="row">
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Id)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Id)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Name)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Name)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.AddressLine1)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.AddressLine1)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.AddressLine2)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.AddressLine2)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.City)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.City)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.State)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.State)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.ZipCode)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.ZipCode)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.WebsiteURL)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.WebsiteURL)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.NumberOfMusicians)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.NumberOfMusicians)
+        </dd>
+    </dl>
+</div>
+<br>
+<h4>Conductor</h4>
+<a asp-action="Create" asp-controller="Conductor" asp-route-id="@Model.Id">
+    Add Conductor
+</a>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                Id
+            </th>
+            <th>
+                First Name
+            </th>
+            <th>
+                Last Name
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var conductor in Model.Conductors)
+        {
+            <tr>
+                <td>
+                    @conductor.Id
+                </td>
+                <td>
+                    @conductor.FirstName 
+                </td>
+                <td>
+                    @conductor.LastName
+                </td>
+                <td>
+                    <a asp-action="Edit" asp-controller="Conductor"
+                       asp-route-id="@Model.Id" asp-route-conductorId="@conductor.Id">Edit Conductor</a> |
+                    <a asp-action="Delete" asp-controller="Conductor"
+                       asp-route-id="@Model.Id" asp-route-conductorId="@conductor.Id">Remove Conductor</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+<br>
+<h4>Musician</h4>
+<a asp-action="Create" asp-controller="Musician" asp-route-id="@Model.Id">
+    Add Musician
+</a>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                Id
+            </th>
+            <th>
+                First Name
+            </th>
+            <th>
+                Last Name
+            </th>
+            <th>
+                Section Name
+            <th>
+                Is Section Leader
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var musician in Model.Musicians)
+        {
+        <tr>
+            <td>
+                @musician.Id
+            </td>
+            <td>
+                @musician.FirstName 
+            </td>
+            <td>
+                @musician.LastName
+            </td>
+            <td>
+                @musician.SectionName
+            </td>
+            <td>
+                @musician.IsSectionLeader
+            </td>
+            <td>
+                <a asp-action="Edit" asp-controller="Musician"
+                   asp-route-id="@Model.Id" asp-route-musicianId="@musician.Id">Edit Musician</a> |
+                <a asp-action="Delete" asp-controller="Musician"
+                   asp-route-id="@Model.Id" asp-route-musicianId="@musician.Id">Remove Musician</a>
+            </td>
+        </tr>
+        }
+    </tbody>
+</table>
+
+
+
+
+<div>
+    <a asp-action="Edit" asp-controller="Orchestra" asp-route-id="@Model.Id">Edit Orchestra</a>  |
+    <a asp-action="Index">Back to Manage Orchestras</a>
+</div>

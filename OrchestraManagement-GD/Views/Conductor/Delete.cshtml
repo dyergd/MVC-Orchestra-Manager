@@ -1,0 +1,43 @@
+﻿@model OrchestraManagement_GD.Models.Entities.Conductor
+
+@{
+    var orchestra = (Orchestra)ViewData["Orchestra"];
+    ViewData["Title"] = $"Are you sure you want to delete this Conductor from {orchestra.Name}";
+}
+
+
+
+
+<h3>@ViewData["Title"]</h3>
+<div>
+
+    <hr />
+    <dl class="row">
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Id)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Id)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.FirstName)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.FirstName)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.LastName)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.LastName)
+        </dd>
+    </dl>
+    <br>
+    <form asp-action="Delete">
+        <input name="Id" value="@Model.Id" type="hidden" />
+        <input type="submit" value="Delete" class="btn btn-danger" /> |
+        <a asp-action="Details" asp-controller="Orchestra" asp-route-id="@orchestra.Id">
+            Back to Orchestra Details
+        </a>
+    </form>
+</div>

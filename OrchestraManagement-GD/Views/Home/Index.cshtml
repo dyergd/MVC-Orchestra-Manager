@@ -1,0 +1,56 @@
+﻿@model IEnumerable<OrchestraManagement_GD.Models.ViewModels.OrchestraDetailsVM>
+
+@{
+
+    var numOfOrchestras = Model.Count();
+    ViewData["Title"] = $"You are managing {numOfOrchestras} orchestras.";
+
+
+}
+<div class="text-center">
+    <h1 class="display-4">Orchestra Management App</h1>
+
+    <p>
+        <h5>@ViewData["Title"]</h5>
+                
+                <a asp-controller="Orchestra" asp-action="Index">Manage Orchestra</a>
+    </p>
+    
+</div>
+<br>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Name)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.WebsiteURL)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.NumberOfMusicians)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            
+            <td>
+                @Html.DisplayFor(modelItem => item.Name)
+            </td>
+            <td>
+                <a href="@Html.DisplayFor(modelItem => item.WebsiteURL)" target="_blank">@Html.DisplayFor(modelItem => item.WebsiteURL)</a>
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.NumberOfMusicians)
+            </td>
+            <td>
+                <a asp-action="Details" asp-controller="Orchestra" asp-route-id="@item.Id">Details</a> 
+            </td>
+
+</tr>
+}
+    </tbody>
+</table>
